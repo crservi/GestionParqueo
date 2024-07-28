@@ -1,0 +1,24 @@
+﻿@model ModeloBase
+@{
+    ViewData["Title"] = "Seleccionar Condomino";
+    var datos = (ProyectoCondominios.Models.Condominos)Model.Objeto;
+}
+<div class="text-center">
+    <h4>Seleccione el condomino</h4>
+</div>
+@using (Html.BeginForm("SeleccionarCondominos", "Home", FormMethod.Post))
+{
+    @Html.DropDownList("CondominoId",
+            datos.ListaCondominos,
+            "Selecione un Condomino")
+
+    <input type="submit" class="btn btn-success" value="Seleccionar" />
+}
+
+@if (Model.Error != null && !string.IsNullOrEmpty(Model.Error.Error))
+{
+    <br />
+    <div class="alert alert-danger" role="alert">
+        @Model.Error.Error
+    </div>
+}
